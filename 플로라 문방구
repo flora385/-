@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<머리>
+ <meta charset=>UTF-8">
+ <meta 이름="viewport" 콘텐츠="width=device-width" />
+ <title>_________/title>
+ <link rel="스타일시트" href="style.css" />
+</머리>
+<바디>
+  <h1>__________</h1>
+  <div id="test"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>짱깨뽀 엽전 교환기</title>
+
+<style>
+    body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: url("https://drive.google.com/uc?export=view&id=11QOUwsHNzAz37-Gma0ybnf0hANwomZ0f") center/cover no-repeat fixed;
+    background-size: cover !important;
+    font-family: "NanumSquare", sans-serif;
+    position: relative;
+}
+
+    /* 상단 타이틀 */
+    .title-box {
+        margin-top: 12px;
+        text-align: center;
+        color: white;
+        text-shadow: 0 3px 6px rgba(0,0,0,0.8);
+    }
+    .title-box h1 { font-size: 26px; margin: 0; }
+    .title-box p { font-size: 11px; opacity: 0.9; }
+
+    /* 코인 UI */
+    .coin-box, .total-coin-box {
+        position: absolute; right: 12px;
+        background: rgba(0,0,0,0.55);
+        padding: 8px 12px; border-radius: 8px;
+        border: 2px solid #000; z-index: 10;
+    }
+    .coin-box { top: 12px; color: #F7D93A; font-size: 15px; }
+    .total-coin-box { top: 55px; color: #00eaff; font-size: 14px; }
+
+    /* 동전 투입구 */
+    .coin-slot {
+        position: absolute; right: 18px; top: 105px;
+        width: 58px; height: 98px;
+        background: linear-gradient(145deg, #d9d9d9, #9c9c9c);
+        border: 3px solid black; border-radius: 10px;
+        box-shadow: inset 0 0 6px #000;
+    }
+    .coin-line { width: 70%; height: 8px; background: #000; margin: 20px auto; border-radius: 4px; }
+
+ .사이드 노트 {
+ 포지션: 절대; 오른쪽: 12 px; 상단: 220 px;
+ background: rgba(0,0,0,0.45);
+ 패딩: 10 px 14 px; 테두리 radius: 8 px;
+ 테두리: 2 px 솔리드 #000; 색상: 흰색; 글꼴 크기: 12 px; 선 높이: 1.5;
+ z-지수: 10;
+ }
+
+ /* 중앙 원형판 */
+ .circle 영역 {
+ 위치: 절대;
+ 상위: 24%;
+ 왼쪽: 50%;
+ 변환: 번역 X(-50%);
+ 너비: 74%;
+ 측면 ratio: 1/1;
+ 배경: 방사형 gradient(circle, #2d2d2d, #0c0c);
+ 국경 radius: 50%;
+ box-shadow: inset 0 0 40px rgba(255,255,255,0.15), 0 0 25px rgba(255,255,255,0.4);
+ 디스플레이: 플렉스;
+ 정당화 내용: 중심;
+ 정렬 items: 중심;
+ }
+
+ .rewards {위치: 상대적; 너비: 92%; 높이: 92%; }
+ .reward {
+ 너비: 22%; 측면 ratio: 1/1;
+ 배경: 방사형 gradient(circle, #ffffff, #d9d9d9);
+ 국경 radius: 50%;
+ 위치: 절대;
+ 디스플레이: 유연성; 정당화 내용: 중심; 정렬 items: 중심;
+ 글꼴 크기: 1.4rem, 글꼴 무게: 700, 색상: #333;
+ 박스 shadow:
+ 0 0 18px rgba(255,255,255,0.9),
+ inset 0 0 10px rgba(255,255,255,0.9),
+ 0 0 8px rgba(255,255,255,0.8);
+ }
+
+ /* 위치 유지 */
+ .reward:n번째 아이(1) {상위: 0%; 왼쪽: 50%; 변환: (- 50%, -20%; }
+ .reward:n번째 아이(2) {상위: 17%; 왼쪽: 84%; 변환: (- 50%, -50%; }
+ .reward:n번째 아이(3) {상위: 50%; 왼쪽: 100%; 변환: (- 60%, -50%; }
+ .reward:n번째 아이(4) {상위: 83%; 왼쪽: 84%; 변환: (- 50%, -50%; }
+ .reward:n번째 아이(5) {상위: 100%; 왼쪽: 50%; 변환: (- 50%, -80%; }
+ .reward:n번째 아이(6) {상위: 83%; 왼쪽: 16%; 변환: (- 50%, -50%; }
+ .reward:n번째 아이(7) {상위: 50%; 왼쪽: 0%; 변환: (- 40%, -50%; }
+ .reward:n번째 아이(8) {상위: 17%; 왼쪽: 16%; 변환: (- 50%, -50%; }
+
+ /* LED */
+ .led-box {
+ 위치: 절대;
+ 상단: 50%; 왼쪽: 50%;
+ 변환: 번역 (- 50%, -50%;
+ }
+ .led-icon {
+ 글꼴 크기: 80 px;
+ 색상: 빨간색;
+ 텍스트 shadow: 0 0 8 px 레드, 0 0 18 px 레드, 0 0 38 px 레드;
+ 애니메이션: ledBlink 0.25초 무한 교대;
+ }
+ @keyframes ledBlink {{불투명도: 0.5; }에서 {불투명도: 1; }}까지
+
+ /* 버튼 */
+ .buttons {
+ 위치: 절대;
+ 하단: 45 px;
+ 너비: 100%;
+ 디스플레이: 유연성; 정당화 내용: 중심; 간격: 25 px;
+ }
+ .btn {
+ 너비: 95 px; 높이: 95 px;
+ 국경 radius: 50%;
+ 테두리: 4 px 솔리드 블랙;
+ 디스플레이: 유연성; 정당화 내용: 중심; 정렬 items: 중심;
+ }
+ 박스 shadow: 0 5 px 0 블랙;
+ 스핀 ();
+}
+</script>
+ .red {배경: #ff3e3e; }
+</body>
+ .노란색 {배경: #f8e44e; }
+
+ .start-label {
+ 위치: 절대;
+ 하단: 20개의 px;
+ 너비: 100%;
+ 텍스트 align: 중심;
+ 색상: 흰색;
+ 텍스트 shadow: 0 2 px 4 px 블랙;
+ }
+
+ /* ★★★ 여기부터 "결과 강조" 수정 ★★★ */
+
+ #결과텍스트 {
+ 위치: 절대;
+ 상위: 50%;
+ 왼쪽: 50%;
+ 변환: 번역 (- 50%, -50%;
+ 너비: 100%;
+ 텍스트 align: 중심;
+ 글꼴 크기: 85 px;
+ 글꼴 무게: 900;
+ 문자 spacing: 4 px;
+ 불투명도: 0;
+ 텍스트 shadow:
+ 0 15 px 블랙,
+ 0 0 25 px 블랙,
+ 0 0 40px rgba(0,0,0,0.8);
+ 전환: 0.25초 완화;
+ 애니메이션: 결과펄스 0.6s 무한 교대 이지인아웃;
+ 포인터-events: 없음;
+ z-인덱스: 9999;
+ }
+
+ @keyframes 결과Pulse {
+ {변환: (-50%, -50% 변환 스케일(1); }
+ {변환: (- 50%, -50% 스케일 변환(1.15); }
+ }
+
+ /* 상태별 문방구 글씨 느낌 */
+ .flash-win {색상: #00ff95; 텍스트 shadow: 0 0 18 px #00ff95, 0 0 28 px #00ff95; }
+ .flash-draw {색상: #ffe14b; 텍스트 shadow: 0 0 18 px #ffe14b, 0 0 28 px #ffe14b; }
+ .flash-lose {색상}: #ff5454; 텍스트 shadow: 0 0 18 px #ff5454, 0 0 28 px #ff5454; }
+
+</스타일>
+</머리>
+
+<바디>
+
+<div class="title 상자">
+ <h1>짱깨뽀 엽전 교환기</h1>
+ <p>본 링크는 이벤트용으로 제작되었습니다.</p>
+</div>
+
+<div class="코인박스" ID="코인박스">엽전: 10 개</div>
+<div class="total-coin-box" ID="totalCoinBox">누적: 0 개</div>
+
+<div class="coin-slot"><div class="coin-line"><div><div>
+<div class="side-note">과한 연타 금지<br>결과는 랜덤입니다<br>운이 좋으면 고보상!</div>
+
+<!-- ★ 결과 표시 ★ -->
+<div id="resultText"></div>
+
+<div class="circle-면적">
+ <div class="rewards">
+ <div class="reward">1</div><div class="reward">2</div><div class="reward">3</div><div class="reward">4</div>
+ <div class="reward">5</div><div class="reward">6</div><div class="reward">7</div><div class="reward">8</div>
+ </div>
+ <div class="led-box"><div id="ledIcon" class="led-icon">✊</div></div>
+</div>
+
+<div class="buttons">
+ <div class="btn red" 클릭 시="startGame('가위')">가위</div>
+ <div class="btn green" 클릭="startGame('rock')">바위</div>
+ <div class="btn yellow" 온클릭="startGame('종이')">보</div>
+</div>
+
+<div class="start-label">게임 시작</div>
+
+<스크립트>
+코인 = 10을 허용합니다;
+총 코인 = 0을 허용합니다;
+
+컨스턴트 보상 = {승: 3, 무승부: 1, 패배: 0};
+const LUCKY_PROB = 0.06;
+
+const coinBox = document.getElementById("코인박스");
+const totalCoinBox = document.getElementById("totalCoinBox");
+constledIcon = document.getElementById("ledIcon");
+컨스트럭트 결과텍스트 = document.getElementById("resultText");
+
+/* LED 애니메이션용 */
+const sequence = ["✌️","✊","🖐️"];
+const mapToRPS = { "✌️": "scissors", "✊": "rock", "🖐️": "paper" };
+
+회전 = 거짓;
+
+/* 승패 판단 */
+함수 판정기(플레이어, 머신){
+ if(플레이어 === 머신)이 "추기"를 반환합니다;
+ if(플레이어 === "록" & 머신 === "scissors")가 "승리"를 반환합니다;
+ if(플레이어 === "scissors" & 기계 === "종이")가 "승리"를 반환합니다;
+ if(플레이어 === "종이" & 기계 === "바위")가 "승리"를 반환합니다;
+ "패"를 반환합니다;
+}
+
+함수 flashResult(유형){
+ 결과텍스트.classList.remove("flash-win", "flash-draw", "flash-lose");
+ 결과Text.classList.add(
+ type === "win" ? "flash-win" :
+ type === "draw" ? "flash-draw" : "flash-lose"
+ );
+ 결과Text.style.opacity = "1";
+
+<!DOCTYPE HTML>
+<html>
+
+함수 startGame(playerChoice){
+ if(코인 <= 0)이 경고 ("엽전이 부족합니다를 반환합니다!);
+ (spinning) 반환 시;
+
+ 동전--;
+ 총 코인++;
+ <h1>___________</h1>
+ <div id="test"></div>
+
+ <script src="script.js"></script>
+ 회전 = 참;
+</html>
+ let idx = 0;
+<!DOCTYPE HTML>
+<html lang="ko">
+<머리>
+<meta charset=>UTF-8">
+<meta 이름="viewport" 콘텐츠="width=장치 너비, 초기 스케일=1.0">
+<title>짱깨뽀 엽전 교환기</title>
+
+<스타일>
+ 본문 {
+ 여백: 0;
+ 패딩: 0;
+ 높이: 100vh;
+ 폭: 100vw;
+ 오버플로: 숨겨진;
+ 배경: url ("https://drive.google.com/uc?export=view&id=11QOUwsHNzAz37-Gma0ybnf0hANwomZ0f ") 센터/커버 repeat 없음 고정;
+ 배경 크기: 커버!중요;
+ 폰트 패밀리: "나눔스퀘어", 산세리프;
+ 위치: 상대적;
+ const lucky = Math.random() < LUCKY_PROB;
+ 만약 (lucky)가 += 5를 얻는다면;
+ /* 상단 타이틀 */
+ .title 상자 {
+ 마진 탑: 12 px;
+ 텍스트 align: 중심;
+ 색상: 흰색;
+ text-shadow: 0 3px 6px rgba(0,0,0,0.8);
+ }
+ .title 상자 h1 { 글꼴 크기: 26 px; 여백: 0; }
+ .title 상자 p { 글꼴 크기: 11 px; 불투명도: 0.9; }
+ 플래시 결과(결과);
+ /* 코인 UI */
+ .코인 박스, .총 코인 박스 {
+ 포지션: 절대; 오른쪽: 12 px;
+ background: rgba(0,0,0,0.55);
+ 패딩: 8 px 12 px; 테두리 radius: 8 px;
+ 경계: 2 px 솔리드 #000; z-인덱스: 10;
+ }
+ .코인 박스 {위: 12px; 색상: #F7D93A; 글꼴 크기: 15px; }
+ .총 코인 박스 {위: 55 px; 색상: #00eaff; 글꼴 크기: 14 px; }
+</html>
